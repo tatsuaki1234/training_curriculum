@@ -15,9 +15,9 @@
           <% day[:month] %>/<% day[:date] %>
         </div>
         <ul class='content'>
-        <% if day[:plans].length != 0 %>
+        <% if day[:plans].length != 0 %>              
           <% day[:plans].each do |plan| %>
-            <li class='plan-list'>・<%= plan %></li>
+            <li class='plan-list'>・<%= plan %></li> 
           <% end %>
         <% end %>
         </ul>
@@ -25,3 +25,5 @@
     <% end %>
   </div>
 </div>
+
+<%# !=	比較演算子	a != b	aとbが等しくない %>

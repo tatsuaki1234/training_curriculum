@@ -9,13 +9,15 @@ class CalendarsController < ApplicationController
   # 予定の保存
   def create
     Plan.create(plan_params)
-    redirect_to action: :index
+    redirect_to action: :index  #リダイレクト先となるアクション名index
   end
-
+       #テーブルのカラム名はplanとdate
+       #モデル名はplan
+       #paramsとして送られてきたデータはplanとdate
   private
 
   def plan_params
-    params.require(:calendars).permit(:date, :plan)
+    params.require(:plan).permit(:date, :plan)  #require(:calendars)から(:plan)に変更。モデル名がplanだから。データベースに保存されるようになった。
   end
 
   def getWeek
@@ -32,7 +34,7 @@ class CalendarsController < ApplicationController
     7.times do |x|
       today_plans = []
       plans.each do |plan|
-        today_plans.push(plan.plan) if plan.date == @todays_date + x
+        today_plans.push(plan.plan) if plan.date == @todays_date + x  #[]だったtoday_plansに[planモデルのplanカラム]が追加されている。
       end
       days = { :month => (@todays_date + x).month, :date => (@todays_date+x).day, :plans => today_plans}
       @week_days.push(days)
